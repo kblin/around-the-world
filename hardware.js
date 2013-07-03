@@ -2,7 +2,8 @@ var bone = require("./fakebonescript");
 
 var destinations = {
     'Paris' : { pin: 'P8_11', leds: 3, active: false },
-    'Venice' : { pin: 'P8_12', leds: 4, active: false }
+    'Venice' : { pin: 'P8_12', leds: 4, active: false },
+    'Suez' : { pin: 'P8_14', leds: 5, active: false }
 };
 
 var clear_pin = 'P8_13';
