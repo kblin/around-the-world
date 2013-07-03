@@ -13,6 +13,55 @@ function handleClear(request, response) {
 
 function handleTravel(request, response) {
     var query = url.parse(request.url, true).query;
+    var result;
+    var current = -1;
+    var dests = hw.getDestinations();
+
+    for (var i in dests) {
+        if (dests[i].name == query.destination) {
+            current =  i;
+            break;
+        }
+    }
+
+    /* Is the destination valid? */
+    if (current < 0) {
+        console.log('invalid target');
+        response.writeHead(409, {'Content-Type': 'application/json'});
+        result = {'result': "Invalid destination: " + query.destination,
+                  'code': 409};
+        response.write(JSON.stringify(result));
+        response.end();
+        return;
+    }
+
+    /* Have we been to the place before */
+    if (current > 0 && !dests[current - 1].active) {
+        console.log('trying to travel to ' + dests[current].name +
+                    ' without having been to ' + dests[current - 1].name);
+        response.writeHead(409, {'Content-Type': 'application/json'});
+        result = {'result': "Can't activate " + query.destination + " yet.",
+                  'code': 409};
+        response.write(JSON.stringify(result));
+        response.end();
+        return;
+    }
+
+    if (query.force) {
+        console.log('forcing position');
+        hw.clear();
+        for (i = 0; i < current; i++) {
+            hw.travel(dests[i].name, 1);
+        }
+        hw.travel(dests[current].name, 1, function() {
+            var result = {'result': 'ok', 'code': 200};
+            response.writeHead(200, {'Content-Type': 'application/json'});
+            response.write(JSON.stringify(result));
+            response.end();
+        });
+        return;
+    }
+
     hw.travel(query.destination, 100, function() {
         var result = {'result': 'ok', 'code': 200};
         response.writeHead(200, {'Content-Type': 'application/json'});
