@@ -18,6 +18,9 @@ function signal(pin) {
 
 function clear() {
     signal(clear_pin);
+    for (var i in destinations) {
+        destinations[i].active = false;
+    }
 }
 
 function init() {
