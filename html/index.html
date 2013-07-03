@@ -10,9 +10,11 @@
     <div data-bind="foreach: destinations">
       <div class="row">
         <div class="span4">
-          <a href="#" data-bind="css: { 'btn btn-block': true, 'btn-success disabled': active},
-                                text: name,
-                                click: $root.travel"></a>
+          <a href="#" data-loading-text="Traveling..."
+            data-bind="css: { 'btn btn-block': true, 'btn-success disabled': active},
+                       attr: {'id': name() + '-button'},
+                       text: name,
+                       click: $root.travel"></a>
         </div>
         <div class="span4 offset2">
           Travel to <span class="text-info" data-bind="text: name"></span>:

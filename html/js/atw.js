@@ -4,10 +4,19 @@ viewModel.travel = function(dest, ev, force) {
     if (force || ev.shiftKey) {
         send.force = true;
     }
-    $.get('/travel', send,
-          function(data, textStatus) {
+    $('#' + dest.name() + '-button').button('loading');
+    $.ajax({
+        url: '/travel',
+        data: send,
+        success: function(data, textStatus) {
             updateModel();
-          }, 'json');
+          },
+        dataType: 'json',
+        error: function(jqXHR, textStatus, error) {
+            console.log(error);
+            $('#' + dest.name() + '-button').button('reset');
+        }
+    });
 };
 viewModel.clear = function() {
     if (!viewModel.started()) {
