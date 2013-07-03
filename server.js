@@ -62,6 +62,15 @@ function handleTravel(request, response) {
         return;
     }
 
+    /* If we already are at the current destination, don't travel */
+    if (dests[current].active) {
+        result = {'result': 'ok', 'code': 200};
+        response.writeHead(200, {'Content-Type': 'application/json'});
+        response.write(JSON.stringify(result));
+        response.end();
+        return;
+    }
+
     hw.travel(query.destination, 100, function() {
         var result = {'result': 'ok', 'code': 200};
         response.writeHead(200, {'Content-Type': 'application/json'});
