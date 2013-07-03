@@ -49,16 +49,21 @@ function handleTravel(request, response) {
 
     if (query.force) {
         console.log('forcing position');
-        hw.clear();
-        for (i = 0; i < current; i++) {
-            hw.travel(dests[i].name, 1);
-        }
-        hw.travel(dests[current].name, 1, function() {
-            var result = {'result': 'ok', 'code': 200};
-            response.writeHead(200, {'Content-Type': 'application/json'});
-            response.write(JSON.stringify(result));
-            response.end();
-        });
+        i = -1;
+        var reset_func = function() {
+            i++;
+            if (i == current) {
+                hw.travel(dests[current].name, 1, function() {
+                    var result = {'result': 'ok', 'code': 200};
+                    response.writeHead(200, {'Content-Type': 'application/json'});
+                    response.write(JSON.stringify(result));
+                    response.end();
+                });
+                return;
+            }
+            hw.travel(dests[i].name, 1, reset_func);
+        };
+        hw.clear(reset_func);
         return;
     }
 
