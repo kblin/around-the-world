@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Around the World in 80 Days</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <h1>Around the World in 80 Days</h1>
+    <div data-bind="foreach: destinations">
+      <div class="row">
+        <div class="span4">
+          <a href="#" data-bind="css: { 'btn btn-block': true, 'btn-success disabled': active},
+                                text: name,
+                                click: $root.travel"></a>
+        </div>
+        <div class="span6 offset2">
+          Travel to <span class="text-info" data-bind="text: name"></span>:
+          <span data-bind="text: active() ? 'done' : 'pending',
+            css: {'text-success': active(), 'text-warning': !active()}"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8 offset4">
+        <a href="#" data-bind="click: clear,
+          css: {'btn': true, 'btn-danger': started, 'disabled': !started()}">Clear</a>
+      </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/knockout.js"></script>
+    <script src="js/knockout.mapping.js"></script>
+    <script src="js/atw.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          updateModel();
+          ko.applyBindings(viewModel);
+      });
+    </script>
+  </body>
+</html>
