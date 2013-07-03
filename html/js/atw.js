@@ -1,7 +1,7 @@
 var viewModel = ko.mapping.fromJS({'destinations': []});
 viewModel.travel = function(dest, ev, force) {
     var send = {'destination': dest.name()};
-    if (force) {
+    if (force || ev.shiftKey) {
         send.force = true;
     }
     $.get('/travel', send,
