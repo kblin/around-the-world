@@ -76,7 +76,7 @@ function handleTravel(request, response) {
         return;
     }
 
-    hw.travel(query.destination, 100, function() {
+    hw.travel(query.destination, 500, function() {
         var result = {'result': 'ok', 'code': 200};
         response.writeHead(200, {'Content-Type': 'application/json'});
         response.write(JSON.stringify(result));
