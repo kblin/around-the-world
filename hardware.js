@@ -54,9 +54,9 @@ function travel(destination, delay, callback) {
 }
 
 function getDestinations() {
-    var dests = {};
+    var dests = [];
     for (var i in destinations) {
-        dests[i] = {'active': destinations[i].active};
+        dests.push({'name': i, 'active': destinations[i].active});
     }
     return dests;
 }
