@@ -10,6 +10,9 @@ viewModel.travel = function(dest, ev, force) {
           }, 'json');
 };
 viewModel.clear = function() {
+    if (!viewModel.started()) {
+        return;
+    }
     $.get('/clear', function(data) {
             updateModel();
           }, 'json');
