@@ -14,10 +14,15 @@
                                 text: name,
                                 click: $root.travel"></a>
         </div>
-        <div class="span6 offset2">
+        <div class="span4 offset2">
           Travel to <span class="text-info" data-bind="text: name"></span>:
           <span data-bind="text: active() ? 'done' : 'pending',
             css: {'text-success': active(), 'text-warning': !active()}"></span>
+        </div>
+        <div class="span2" data-bind="visible: active">
+          <a href="#" class="btn btn-block btn-warning"
+            data-bind="text: 'Back to ' + name(),
+                       click: function(data, event) {$root.travel(data, event, true)}"></a>
         </div>
       </div>
     </div>

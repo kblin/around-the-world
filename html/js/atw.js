@@ -1,6 +1,10 @@
 var viewModel = ko.mapping.fromJS({'destinations': []});
-viewModel.travel = function(dest) {
-    $.get('/travel', {'destination': dest.name()},
+viewModel.travel = function(dest, ev, force) {
+    var send = {'destination': dest.name()};
+    if (force) {
+        send.force = true;
+    }
+    $.get('/travel', send,
           function(data, textStatus) {
             updateModel();
           }, 'json');
