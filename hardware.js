@@ -17,8 +17,14 @@ function signal(pin) {
     }, 1);
 }
 
-function clear() {
-    signal(clear_pin);
+function clear(callback) {
+    bone.digitalWrite(clear_pin, 0);
+    setTimeout(function() {
+        bone.digitalWrite(clear_pin, 1);
+        if (callback) {
+            callback();
+        }
+    }, 1);
     for (var i in destinations) {
         destinations[i].active = false;
     }
