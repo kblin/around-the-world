@@ -35,12 +35,15 @@ function init() {
     clear();
 }
 
-function travel(destination, delay) {
+function travel(destination, delay, callback) {
     var dest = destinations[destination];
     var leds_left = dest.leds;
     var shiftOnce = function() {
         if (leds_left <= 0) {
             dest.active = true;
+            if (callback) {
+                callback();
+            }
             return;
         }
         signal(dest.pin);
