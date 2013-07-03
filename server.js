@@ -36,7 +36,7 @@ function handleTravel(request, response) {
     }
 
     /* Have we been to the place before */
-    if (current > 0 && !dests[current - 1].active) {
+    if (current > 0 && !query.force && !dests[current - 1].active) {
         console.log('trying to travel to ' + dests[current].name +
                     ' without having been to ' + dests[current - 1].name);
         response.writeHead(409, {'Content-Type': 'application/json'});
