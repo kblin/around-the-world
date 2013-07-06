@@ -3,7 +3,33 @@ var bone = require("./fakebonescript");
 var destinations = {
     'Paris' : { pin: 'P8_11', leds: 2, active: false },
     'Venice' : { pin: 'P8_11', leds: 2, active: false },
-    'Suez' : { pin: 'P8_11', leds: 4, active: false }
+    'Suez' : { pin: 'P8_11', leds: 4, active: false },
+    'P_Fx_Fg' : { pin: 'P8_11', leds: 4, active: false },
+    'Fogg_Bisland' : { pin: 'P8_11', leds: 4, active: false },
+    'Bombay' : { pin: 'P8_11', leds: 4, active: false },
+    'Train_stop' : { pin: 'P8_11', leds: 4, active: false },
+    'Aouda' : { pin: 'P8_11', leds: 4, active: false },
+    'Calcotta' : { pin: 'P8_11', leds: 4, active: false },
+    'HongKong' : { pin: 'P8_11', leds: 4, active: false },
+    'Carnatic' : { pin: 'P8_11', leds: 4, active: false },
+    'Yokohama' : { pin: 'P8_11', leds: 4, active: false },
+    'GenGrantStop1' : { pin: 'P8_11', leds: 4, active: false },
+    'Aoudas_story' : { pin: 'P8_11', leds: 4, active: false }, /* to Yokohama */
+    'MarieCeleste' : { pin: 'P8_11', leds: 4, active: false },
+    'Nautilus' : { pin: 'P8_11', leds: 4, active: false },
+    'SanFrancisco' : { pin: 'P8_11', leds: 4, active: false },
+    'Bridge' : { pin: 'P8_11', leds: 4, active: false },
+    'Duel' : { pin: 'P8_11', leds: 4, active: false },
+    'NewYork' : { pin: 'P8_11', leds: 4, active: false },
+    'Mutiny' : { pin: 'P8_11', leds: 4, active: false },
+    'Fix_Figgs' : { pin: 'P8_11', leds: 4, active: false },
+    'Upcoming_storm' : { pin: 'P8_11', leds: 4, active: false },
+    'Out_of_coal' : { pin: 'P8_11', leds: 4, active: false },
+    'Burn1' : { pin: 'P8_11', leds: 4, active: false },
+    'Burn2' : { pin: 'P8_11', leds: 4, active: false },
+    'Burn3' : { pin: 'P8_11', leds: 4, active: false },
+    'Liverpool' : { pin: 'P8_11', leds: 4, active: false },
+    'London' : { pin: 'P8_11', leds: 4, active: false }
 };
 
 var clear_pin = 'P8_13';
