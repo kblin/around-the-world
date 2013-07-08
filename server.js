@@ -91,6 +91,14 @@ function handleModel(request, response) {
     response.end();
 }
 
+function handleNext(request, response) {
+    var leds = hw.next();
+    response.writeHead(200, {'Content-Type': 'application/json'});
+    response.write(JSON.stringify({'leds': leds}));
+    response.end();
+}
+
+
 function getMimeType(name) {
     var extension = name.split('.').pop();
     switch(extension) {
@@ -140,6 +148,9 @@ function start() {
                 break;
             case '/model':
                 handler = handleModel;
+                break;
+            case '/next':
+                handler = handleNext;
                 break;
             default:
                 handler = handleFile;

@@ -35,6 +35,7 @@ var destinations = {
 var clear_pin = 'P8_13';
 
 var states = {};
+var leds = 0;
 
 function signal(pin) {
     bone.digitalWrite(pin, 1);
@@ -66,6 +67,7 @@ function init() {
     }
     bone.pinMode(clear_pin, 'out');
     clear();
+    leds = 0;
 }
 
 function travel(destination, delay, callback) {
@@ -94,7 +96,14 @@ function getDestinations() {
     return dests;
 }
 
+function next() {
+    signal('P8_11');
+    return ++leds;
+}
+
+
 exports.clear = clear;
 exports.init = init;
 exports.travel = travel;
 exports.getDestinations = getDestinations;
+exports.next = next;

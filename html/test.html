@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Around the World in 80 Days</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <h1>Map Test</h1>
+    <div>
+      <div class="row">
+        <div class="span4">
+          <a href="#" class="btn btn-block" id="button-next">Next</a>
+        </div>
+        <div class="span4 text-center">
+          <span id="led-count" class="text-info">0</span> LEDs lit
+        </div>
+        <div class="span4">
+          <a href="#" class="btn btn-block btn-danger" id="button-clear">Clear</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+      function set(count) {
+        $('#led-count').text(count);
+      }
+
+      function next() {
+          $.get('/next', {}, function(data) {
+              set(data.leds);
+              }, 'json');
+      }
+
+      function clear() {
+          $.get('/clear', {}, function(data) {
+              set(0);
+              }, 'json');
+      }
+
+      $(document).ready(function() {
+          $('#button-next').click(next);
+          $('#button-clear').click(clear);
+      });
+    </script>
+  </body>
+</html>
