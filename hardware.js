@@ -83,6 +83,7 @@ function travel(destination, delay, callback) {
             return;
         }
         signal(dest.pin);
+        leds++;
         leds_left -= 1;
         setTimeout(shiftOnce, delay);
     };
