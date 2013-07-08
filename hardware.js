@@ -55,6 +55,7 @@ function clear(callback) {
     for (var i in destinations) {
         destinations[i].active = false;
     }
+    leds = 0;
 }
 
 function init() {
