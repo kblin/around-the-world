@@ -19,9 +19,6 @@ viewModel.travel = function(dest, ev, force) {
     });
 };
 viewModel.clear = function() {
-    if (!viewModel.started()) {
-        return;
-    }
     $.get('/clear', function(data) {
             updateModel();
           }, 'json');
