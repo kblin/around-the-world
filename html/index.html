@@ -49,6 +49,11 @@
               switch(event.which) {
               case 33:
                   console.log('PgUp');
+                  var prev = viewModel.prevDest();
+                  if (prev) {
+                      console.log('prev dest: ' + prev.name());
+                      viewModel.travel(prev, undefined, true);
+                  }
                   break;
               case 34:
                   console.log('PgDn');

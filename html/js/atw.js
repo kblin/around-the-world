@@ -39,6 +39,17 @@ viewModel.nextDest = function() {
     }
     return;
 };
+viewModel.prevDest = function() {
+    for(var i in viewModel.destinations()) {
+        if (! viewModel.destinations()[i].active()) {
+            if (i > 1) {
+                return viewModel.destinations()[i-2];
+            }
+            break;
+        }
+    }
+    return;
+};
 viewModel.delay = function() {
     $.get('/delay', function(data) {
             viewModel.offset(data.offset);
