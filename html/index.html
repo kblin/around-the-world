@@ -28,7 +28,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="span4 offset4">
+      <div class="span2">
+        Adjusting for offset of <span class="text-info" data-bind="text: offset"></span>
+      </div>
+      <div class="span4 offset2">
         <a href="#" class="btn btn-block btn-danger" data-bind="click: clear">Clear</a>
       </div>
     </div>
@@ -42,28 +45,29 @@
           updateModel();
           ko.applyBindings(viewModel);
           $(document).keydown(function(event) {
+              event.preventDefault();
               switch(event.which) {
-              case 27:
-                  console.log('F5');
-                  event.preventDefault();
-                  event.stopPropagation();
-                  break;
               case 33:
                   console.log('PgUp');
-                  event.preventDefault();
                   break;
               case 34:
                   console.log('PgDn');
-                  event.preventDefault();
                   var next = viewModel.nextDest();
                   if (next) {
                       console.log('next dest: ' + next.name());
                       viewModel.travel(next);
                   }
                   break;
+              case 27:
+                  /* Every other click, the remote sends this instead of F5,
+                     so fall through to the F5 handler */
+              case 116:
+                  console.log('F5');
+                  event.stopPropagation();
+                  viewModel.delay();
+                  break;
               case 190:
                   console.log('black');
-                  event.preventDefault();
                   viewModel.clear();
                   break;
               }

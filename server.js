@@ -86,8 +86,9 @@ function handleTravel(request, response) {
 
 function handleModel(request, response) {
     var dests = hw.getDestinations();
+    var offset = hw.getOffset();
     response.writeHead(200, {'Content-Type': 'application/json'});
-    response.write(JSON.stringify({'destinations': dests}));
+    response.write(JSON.stringify({'destinations': dests, 'offset': offset}));
     response.end();
 }
 
@@ -95,6 +96,13 @@ function handleNext(request, response) {
     var leds = hw.next();
     response.writeHead(200, {'Content-Type': 'application/json'});
     response.write(JSON.stringify({'leds': leds}));
+    response.end();
+}
+
+function handleDelay(request, response) {
+    var offset = hw.delay();
+    response.writeHead(200, {'Content-Type': 'application/json'});
+    response.write(JSON.stringify({'offset': offset}));
     response.end();
 }
 
@@ -151,6 +159,9 @@ function start() {
                 break;
             case '/next':
                 handler = handleNext;
+                break;
+            case '/delay':
+                handler = handleDelay;
                 break;
             default:
                 handler = handleFile;

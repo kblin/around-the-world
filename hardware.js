@@ -36,6 +36,7 @@ var clear_pin = 'P8_13';
 
 var states = {};
 var leds = 0;
+var offset = 0;
 
 function signal(pin) {
     bone.digitalWrite(pin, 1);
@@ -56,6 +57,7 @@ function clear(callback) {
         destinations[i].active = false;
     }
     leds = 0;
+    offset = 0;
 }
 
 function init() {
@@ -73,7 +75,9 @@ function init() {
 
 function travel(destination, delay, callback) {
     var dest = destinations[destination];
-    var leds_left = dest.leds;
+    var leds_left = dest.leds - offset;
+    offset -= dest.leds;
+    offset = Math.max(0, offset);
     var shiftOnce = function() {
         if (leds_left <= 0) {
             dest.active = true;
@@ -103,9 +107,19 @@ function next() {
     return ++leds;
 }
 
+function delay() {
+    offset += 1;
+    return offset;
+}
+
+function getOffset() {
+    return offset;
+}
 
 exports.clear = clear;
 exports.init = init;
 exports.travel = travel;
 exports.getDestinations = getDestinations;
 exports.next = next;
+exports.delay = delay;
+exports.getOffset = getOffset;

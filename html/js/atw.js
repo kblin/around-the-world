@@ -1,4 +1,4 @@
-var viewModel = ko.mapping.fromJS({'destinations': []});
+var viewModel = ko.mapping.fromJS({'destinations': [], 'offset': 0});
 viewModel.travel = function(dest, ev, force) {
     var send = {'destination': dest.name()};
     if (force || (ev && ev.shiftKey)) {
@@ -38,6 +38,11 @@ viewModel.nextDest = function() {
         }
     }
     return;
+};
+viewModel.delay = function() {
+    $.get('/delay', function(data) {
+            viewModel.offset(data.offset);
+        }, 'json');
 };
 
 function updateModel() {
