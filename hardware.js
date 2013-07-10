@@ -70,7 +70,14 @@ function init() {
     }
     bone.pinMode(clear_pin, 'out');
     clear();
-    leds = 0;
+    bone.pinMode('USR0', 'out');
+    bone.pinMode('USR1', 'out');
+    bone.pinMode('USR2', 'out');
+    bone.pinMode('USR3', 'out');
+    bone.digitalWrite('USR0', 0);
+    bone.digitalWrite('USR1', 0);
+    bone.digitalWrite('USR2', 0);
+    bone.digitalWrite('USR3', 0);
 }
 
 function travel(destination, delay, callback) {
