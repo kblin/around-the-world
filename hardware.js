@@ -15,7 +15,7 @@ var destinations = {
     'Yokohama' : { pin: 'P8_11', leds: 2, active: false },
     'GenGrantStop1' : { pin: 'P8_11', leds: 4, active: false },
     'Aoudas_story' : { pin: 'P8_11', leds: 8, active: false }, /* to Yokohama */
-    'MarieCeleste' : { pin: 'P8_11', leds: 3, active: false },
+    'MarieCeleste' : { pin: 'P8_11', leds: 4, active: false },
     'Nautilus' : { pin: 'P8_11', leds: 1, active: false },
     'SanFrancisco' : { pin: 'P8_11', leds: 3, active: false },
     'Bridge' : { pin: 'P8_11', leds: 4, active: false },
