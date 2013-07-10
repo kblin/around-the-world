@@ -1,7 +1,7 @@
 var viewModel = ko.mapping.fromJS({'destinations': []});
 viewModel.travel = function(dest, ev, force) {
     var send = {'destination': dest.name()};
-    if (force || ev.shiftKey) {
+    if (force || (ev && ev.shiftKey)) {
         send.force = true;
     }
     $('#' + dest.name() + '-button').button('loading');
@@ -31,6 +31,14 @@ viewModel.started = ko.computed(function() {
     }
     return false;
 });
+viewModel.nextDest = function() {
+    for(var i in viewModel.destinations()) {
+        if (! viewModel.destinations()[i].active()) {
+            return viewModel.destinations()[i];
+        }
+    }
+    return;
+};
 
 function updateModel() {
     $.getJSON('/model', function(data) {

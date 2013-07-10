@@ -41,6 +41,33 @@
       $(document).ready(function() {
           updateModel();
           ko.applyBindings(viewModel);
+          $(document).keydown(function(event) {
+              switch(event.which) {
+              case 27:
+                  console.log('F5');
+                  event.preventDefault();
+                  event.stopPropagation();
+                  break;
+              case 33:
+                  console.log('PgUp');
+                  event.preventDefault();
+                  break;
+              case 34:
+                  console.log('PgDn');
+                  event.preventDefault();
+                  var next = viewModel.nextDest();
+                  if (next) {
+                      console.log('next dest: ' + next.name());
+                      viewModel.travel(next);
+                  }
+                  break;
+              case 190:
+                  console.log('black');
+                  event.preventDefault();
+                  viewModel.clear();
+                  break;
+              }
+          });
       });
     </script>
   </body>
